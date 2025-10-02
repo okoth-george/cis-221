@@ -52,7 +52,8 @@
       border-radius: 12px;
     }
 
-    .offers {
+   
+    .offers, .benefits, .inventory {
       padding: 30px;
       background: #fff;
       margin: 20px;
@@ -77,13 +78,12 @@
       color: white;
     }
 
-    .benefits {
-      background: #ffe9e0;
-      padding: 30px;
-      margin: 20px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    .revenue {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
+      text-align: right;
     }
 
     footer {
@@ -156,8 +156,34 @@
     <p>✔ Fast delivery & easy returns</p>
     <p>✔ Trusted by thousands of happy customers</p>
   </section>
-
-
+ 
+  <section class="inventory">
+    <h2>📊 Inventory & Sales Report</h2>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Bought</th>
+        <th>Sold</th>
+        <th>In Stock</th>
+        <th>Revenue</th>
+      </tr>
+      {% for item in products %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>${{ "%.2f"|format(item.price) }}</td>
+        <td>{{ item.bought }}</td>
+        <td>{{ item.sold }}</td>
+        <td>{{ item.in_stock }}</td>
+        <td>${{ "%.2f"|format(item.revenue) }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <div class="revenue">
+      💰 Total Revenue: ${{ "%.2f"|format(total_revenue) }}
+    </div>
+  </section>
+  
     <footer>
         <p>&copy; 2025 Fashion Store. All rights reserved.</p>
 </body>
